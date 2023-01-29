@@ -1,0 +1,7 @@
+name: AIFactionName
+version: '${project.version}'
+main: com.wojtazz.aifactionname.Main
+api-version: 1.19
+author: Wojtazz
+commands:
+  generatename:
