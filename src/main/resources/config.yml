@@ -1,0 +1,13 @@
+# Define openai model
+# default: text-davinci-003
+model: "text-davinci-003"
+
+# Define max words count in single name
+# default: 2
+max_words_count: 2
+
+message:
+  loading: "Trwa generowanie nazwy..."
+  success: "Przykładowa nazwa gildii: "
+  error: "Błąd: "
+
