@@ -10,6 +10,7 @@ import static com.wojtazz.aifactionname.utils.OpenAI.callToAI;
 
 public class GetNameCommand implements CommandExecutor {
     private String AIModel;
+    private String apiKey;
     private int maxWordsCount;
     private String loadingMessage;
     private String successMessage;
@@ -17,6 +18,7 @@ public class GetNameCommand implements CommandExecutor {
 
     public GetNameCommand(Config config) {
         this.AIModel = config.getAIModel();
+        this.apiKey = config.getApiKey();
         this.maxWordsCount = config.getMaxWordsCount();
         this.loadingMessage = config.getLoadingMessage();
         this.successMessage = config.getSuccessMessage();
@@ -41,6 +43,6 @@ public class GetNameCommand implements CommandExecutor {
     private String getRandomFactionName() throws IOException {
         String message = String.format("Podaj humorystyczna nazwe gildii w minecraft skladajaca sie z %d wyrazow", this.maxWordsCount);
 
-        return callToAI(this.AIModel, message);
+        return callToAI(this.apiKey, this.AIModel, message);
     }
 }

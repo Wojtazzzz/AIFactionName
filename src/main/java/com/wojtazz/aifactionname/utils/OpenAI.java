@@ -13,15 +13,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 public class OpenAI {
-    private static final String API_KEY = "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";
     private static final String API_URL = "https://api.openai.com/v1/completions";
-    public static String callToAI(String model, String prompt) throws IOException {
+    public static String callToAI(String apiKey, String model, String prompt) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
 
         HttpPost httpPost = new HttpPost(API_URL);
 
         httpPost.addHeader("Content-Type", "application/json");
-        httpPost.addHeader("Authorization", "Bearer " + API_KEY);
+        httpPost.addHeader("Authorization", "Bearer " + apiKey);
 
         JSONObject requestBody = new JSONObject();
         requestBody.put("model", model);
