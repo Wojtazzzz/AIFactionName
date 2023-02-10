@@ -1,48 +1,32 @@
 package com.wojtazz.aifactionname;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 
-import java.io.IOException;
-
-import static com.wojtazz.aifactionname.utils.OpenAI.callToAI;
+import static com.wojtazz.aifactionname.utils.CreateItemStack.createItemStack;
 
 public class GetNameCommand implements CommandExecutor {
-    private String AIModel;
-    private String apiKey;
-    private int maxWordsCount;
-    private String loadingMessage;
-    private String successMessage;
-    private String errorMessage;
-
-    public GetNameCommand(Config config) {
-        this.AIModel = config.getAIModel();
-        this.apiKey = config.getApiKey();
-        this.maxWordsCount = config.getMaxWordsCount();
-        this.loadingMessage = config.getLoadingMessage();
-        this.successMessage = config.getSuccessMessage();
-        this.errorMessage = config.getErrorMessage();
-    }
-
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        try {
-            sender.sendMessage(this.loadingMessage);
-
-            String randomFactionName = getRandomFactionName();
-
-            sender.sendMessage(this.successMessage + randomFactionName);
-        } catch (IOException e) {
-            sender.sendMessage(this.errorMessage + e.getMessage());
+        if (!(sender instanceof Player)) {
+            return false;
         }
+
+        Player player = (Player) sender;
+
+        Inventory inventory = Bukkit.createInventory(player, 9, "Wybierz jezyk");
+        inventory.setItem(0, createItemStack(Material.DIAMOND, "Jezyk Polski"));
+        inventory.setItem(1, createItemStack(Material.EMERALD, "Jezyk Angielski"));
+
+        player.openInventory(inventory);
 
         return true;
     }
 
-    private String getRandomFactionName() throws IOException {
-        String message = String.format("Podaj humorystyczna nazwe gildii w minecraft skladajaca sie z %d wyrazow", this.maxWordsCount);
 
-        return callToAI(this.apiKey, this.AIModel, message);
-    }
 }

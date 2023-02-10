@@ -5,3 +5,4 @@ api-version: 1.19
 author: Wojtazz
 commands:
   ainame:
+    usage: "This command can be only used by players"
