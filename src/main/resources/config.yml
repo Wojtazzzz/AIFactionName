@@ -18,3 +18,4 @@ message:
   loading: "&aLoading..."
   success: "&aGenerated name:"
   error: "&cError:"
+  cooldown: "&cYou must wait 5 second before next use"

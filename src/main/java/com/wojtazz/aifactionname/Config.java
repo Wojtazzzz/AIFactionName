@@ -8,6 +8,7 @@ public class Config {
     private final String loadingMessage;
     private final String successMessage;
     private final String errorMessage;
+    private final String cooldownMessage;
 
     public Config(Main main) {
         this.AIModel = main.getConfig().getString("model", "text-davinci-003");
@@ -17,6 +18,7 @@ public class Config {
         this.loadingMessage = main.getConfig().getString("message.loading", "Loading...");
         this.successMessage = main.getConfig().getString("message.success", "Generated name:");
         this.errorMessage = main.getConfig().getString("message.error", "Error:");
+        this.cooldownMessage = main.getConfig().getString("message.cooldown", "You must wait 5 second before next use");
     }
 
     public String getAIModel() {
@@ -41,5 +43,8 @@ public class Config {
     }
     public String getErrorMessage() {
         return this.errorMessage;
+    }
+    public String getCooldownMessage() {
+        return this.cooldownMessage;
     }
 }
