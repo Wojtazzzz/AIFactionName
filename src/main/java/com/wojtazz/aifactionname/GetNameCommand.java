@@ -9,8 +9,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import static com.wojtazz.aifactionname.utils.CreateItemStack.createItemStack;
+import static com.wojtazz.aifactionname.utils.CreateMessage.createMessage;
 
 public class GetNameCommand implements CommandExecutor {
+    private final String guiName;
+
+    public GetNameCommand(Config config) {
+        this.guiName = config.getGuiName();
+    }
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
@@ -19,9 +25,9 @@ public class GetNameCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        Inventory inventory = Bukkit.createInventory(player, 9, "Wybierz jezyk");
-        inventory.setItem(0, createItemStack(Material.DIAMOND, "Jezyk Polski"));
-        inventory.setItem(1, createItemStack(Material.EMERALD, "Jezyk Angielski"));
+        Inventory inventory = Bukkit.createInventory(player, 9,  createMessage(this.guiName));
+        inventory.setItem(0, createItemStack(Material.DIAMOND, "Polski"));
+        inventory.setItem(1, createItemStack(Material.EMERALD, "English"));
 
         player.openInventory(inventory);
 

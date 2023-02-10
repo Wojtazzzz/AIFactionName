@@ -9,7 +9,7 @@ public final class Main extends JavaPlugin {
     public void onEnable() {
         setupConfig();
 
-        getCommand("ainame").setExecutor(new GetNameCommand());
+        getCommand("ainame").setExecutor(new GetNameCommand(this.config));
         Bukkit.getPluginManager().registerEvents(new GuiListener(this.config), this);
     }
 

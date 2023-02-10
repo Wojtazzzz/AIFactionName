@@ -5,7 +5,10 @@ model: "text-davinci-003"
 # api key
 # generate by creating account on openai platform
 # https://openai.com/api/
-api_key: "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"
+api_key: ""
+
+# gui name
+gui_name: "&aChoose language"
 
 # Define max words count in single name
 # default: 2
@@ -15,4 +18,3 @@ message:
   loading: "Loading..."
   success: "Generated name:"
   error: "Error:"
-

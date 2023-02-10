@@ -11,16 +11,18 @@ import static com.wojtazz.aifactionname.utils.OpenAI.callToAI;
 import static com.wojtazz.aifactionname.utils.CreateMessage.createMessage;
 
 public class GuiListener implements Listener {
-    private String AIModel;
-    private String apiKey;
-    private int maxWordsCount;
-    private String loadingMessage;
-    private String successMessage;
-    private String errorMessage;
+    private final String AIModel;
+    private final String apiKey;
+    private final String guiName;
+    private final int maxWordsCount;
+    private final String loadingMessage;
+    private final String successMessage;
+    private final String errorMessage;
 
     public GuiListener(Config config) {
         this.AIModel = config.getAIModel();
         this.apiKey = config.getApiKey();
+        this.guiName = config.getGuiName();
         this.maxWordsCount = config.getMaxWordsCount();
         this.loadingMessage = config.getLoadingMessage();
         this.successMessage = config.getSuccessMessage();
@@ -29,7 +31,7 @@ public class GuiListener implements Listener {
 
     @EventHandler
     public void onClick(InventoryClickEvent event) {
-        if (!event.getView().getTitle().equals("Wybierz jezyk")) {
+        if (!event.getView().getTitle().equals(createMessage(this.guiName))) {
             return;
         }
 

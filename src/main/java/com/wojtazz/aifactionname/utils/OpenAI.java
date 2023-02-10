@@ -41,8 +41,6 @@ public class OpenAI {
         JSONArray choices = responseJson.getJSONArray("choices");
         JSONObject firstChoice = choices.getJSONObject(0);
 
-        String AITextResponse = firstChoice.getString("text");
-
-        return AITextResponse;
+        return firstChoice.getString("text");
     }
 }
