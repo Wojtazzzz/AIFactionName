@@ -8,13 +8,13 @@ model: "text-davinci-003"
 api_key: ""
 
 # gui name
-gui_name: "&aChoose language"
+gui_name: "Choose language"
 
 # Define max words count in single name
 # default: 2
 max_words_count: 2
 
 message:
-  loading: "Loading..."
-  success: "Generated name:"
-  error: "Error:"
+  loading: "&aLoading..."
+  success: "&aGenerated name:"
+  error: "&cError:"

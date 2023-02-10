@@ -71,7 +71,7 @@ public class GuiListener implements Listener {
         switch (language) {
             default:
             case "pl":
-                return String.format("Podaj humorystyczna nazwe gildii w minecraft skladajaca sie z maksymalnie %d wyrazow, bez cudzyslowia", this.maxWordsCount);
+                return String.format("Podaj humorystyczna nazwe gildii w minecraft w jezyku polskim skladajaca sie z maksymalnie %d wyrazow, bez cudzyslowia", this.maxWordsCount);
 
             case "en":
                 return String.format("Give me funny Minecraft faction name which contain max %d words, without quotation marks", this.maxWordsCount);
