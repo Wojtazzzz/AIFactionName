@@ -12,7 +12,7 @@ api_key: "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"
 max_words_count: 2
 
 message:
-  loading: "Trwa generowanie nazwy..."
-  success: "Przykładowa nazwa gildii: "
-  error: "Błąd: "
+  loading: "Loading..."
+  success: "Generated name:"
+  error: "Error:"
 

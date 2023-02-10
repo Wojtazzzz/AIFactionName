@@ -8,6 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import java.io.IOException;
 
 import static com.wojtazz.aifactionname.utils.OpenAI.callToAI;
+import static com.wojtazz.aifactionname.utils.CreateMessage.createMessage;
 
 public class GuiListener implements Listener {
     private String AIModel;
@@ -42,15 +43,15 @@ public class GuiListener implements Listener {
 
         player.closeInventory();
 
-        player.sendMessage(this.loadingMessage);
+        player.sendMessage(createMessage(this.loadingMessage));
         String language = detectLanguage(event.getRawSlot());
 
         try {
             String randomFactionName = getRandomFactionName(language);
 
-            player.sendMessage(this.successMessage + randomFactionName);
+            player.sendMessage(createMessage(this.successMessage + " " + randomFactionName.trim()));
         } catch (IOException e) {
-            player.sendMessage(this.errorMessage + e.getMessage());
+            player.sendMessage(createMessage(this.errorMessage + " " + e.getMessage()));
         }
     }
 
@@ -68,16 +69,16 @@ public class GuiListener implements Listener {
         switch (language) {
             default:
             case "pl":
-                return String.format("Podaj humorystyczna nazwe gildii w minecraft skladajaca sie z maksymalnie %d wyrazow", this.maxWordsCount);
+                return String.format("Podaj humorystyczna nazwe gildii w minecraft skladajaca sie z maksymalnie %d wyrazow, bez cudzyslowia", this.maxWordsCount);
 
             case "en":
-                return String.format("Give me funny Minecraft faction name which contain max %d words", this.maxWordsCount);
+                return String.format("Give me funny Minecraft faction name which contain max %d words, without quotation marks", this.maxWordsCount);
         }
     }
 
     private String getRandomFactionName(String language) throws IOException {
-        String message = getPrompt(language);
+        String prompt = getPrompt(language);
 
-        return callToAI(this.apiKey, this.AIModel, message);
+        return callToAI(this.apiKey, this.AIModel, prompt);
     }
 }
